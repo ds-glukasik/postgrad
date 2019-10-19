@@ -51,5 +51,51 @@ order by country
 select firstname AS imie, lastname as last
 from Employees
 
+-- Trzeba uwazac, ponizszy przyklad dziala 
+-- wyswietla kolumne firstname jako lastname
 select firstname lastname
 from Employees
+
+
+select firstname AS imie, lastname as last, 1 '1'
+from Employees
+
+select OrderID, UnitPrice * 1.05 as NewUnitPrice
+from [Order Details]
+
+select FirstName + ' ' + LastName as imie_nazwisko
+from Employees
+
+select *
+from Orders
+where OrderID = 10250
+
+/*
+Napisz polecenie, które oblicza wartość każdej pozycji zamówienia
+o numerze 10250
+*/
+
+select UnitPrice, Quantity, Discount,
+		(UnitPrice - (UnitPrice * Discount)) * Quantity as Final_Price
+from [Order Details]
+where OrderID = 10250
+
+select UnitPrice, Quantity, Discount,
+		(UnitPrice * Quantity) * (1 - Discount) as Final_Price
+from [Order Details]
+where OrderID = 10250
+
+/*
+Napisz polecenie które dla każdego dostawcy (supplier) pokaże
+pojedynczą kolumnę zawierającą nr telefonu i nr faksu w formacie
+(numer telefonu i faksu mają być oddzielone przecinkiem)
+*/
+
+select CompanyName, Phone, Fax,
+	phone + '. ' + isnull(fax, 'nie ma faxu') as Phone_fax
+from Suppliers
+
+
+
+
+
